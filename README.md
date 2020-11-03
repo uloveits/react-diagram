@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+线上地址:
+Open [http://diagram.uloveits.com](http://diagram.uloveits.com) to view it in the browser.
+
 ## Available Scripts
 
 In the project directory, you can run:
