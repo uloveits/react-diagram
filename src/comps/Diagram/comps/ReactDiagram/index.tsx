@@ -8,12 +8,12 @@ export interface IDiagramProps {
   linkDataArray?: Array<go.ObjectData>;
   modelData?: go.ObjectData;
   skipsDiagramUpdate: boolean;
+  isAnimation?: boolean;
   onModelChange?: (e: go.IncrementalData) => void;
   onModelClick?: (e: any) => void;
 }
 
 const ReactDiagram = (props: IDiagramProps) => {
-
   const divRef = React.useRef<HTMLDivElement | null>(null);
   // let modelChangedListener: ((e: go.ChangedEvent) => void) | null = null;
 
@@ -23,6 +23,7 @@ const ReactDiagram = (props: IDiagramProps) => {
     linkDataArray,
     modelData,
     skipsDiagramUpdate,
+    isAnimation = false,
     onModelChange,
     onModelClick,
     initDiagram,
@@ -39,9 +40,7 @@ const ReactDiagram = (props: IDiagramProps) => {
     return initDiagram();
   };
 
-
   const updateDiagram = (diagram: go.Diagram) => {
-
     console.log('updateDiagram================');
     if (diagram !== null) {
       const model = diagram.model;
@@ -57,7 +56,18 @@ const ReactDiagram = (props: IDiagramProps) => {
     }
   };
 
-
+  const initAnimation = (diagram: go.Diagram) => {
+    if (!isAnimation) return;
+    // Animate the flow in the pipes
+    const animation = new go.Animation();
+    animation.easing = go.Animation.EaseLinear;
+    diagram.links.each((link: any) => {
+      animation.add(link.findObject('PIPE'), 'strokeDashOffset', 20, 0);
+    });
+    // Run indefinitely
+    animation.runCount = Infinity;
+    animation.start();
+  };
 
   React.useEffect(() => {
     if (divRef.current === null) return;
@@ -82,7 +92,10 @@ const ReactDiagram = (props: IDiagramProps) => {
         const dataChanges = e.model!.toIncrementalData(e);
         console.log('dataChanges');
         console.log(dataChanges);
-        if (dataChanges !== null) onModelChange && onModelChange(dataChanges);
+        if (dataChanges !== null) {
+          initAnimation(diagram);
+          onModelChange && onModelChange(dataChanges);
+        }
       }
     };
 
@@ -104,14 +117,14 @@ const ReactDiagram = (props: IDiagramProps) => {
         if (modelData !== undefined) {
           m.assignAllDataProperties(m.modelData, modelData);
         }
+        initAnimation(diagram);
       }, 'gojs-react init merge');
     });
 
     // eslint-disable-next-line
   }, [nodeDataArray]);
 
-
-  return (<div ref={divRef} style={{ ...divStyle }} />);
+  return <div ref={divRef} style={{ ...divStyle }} />;
 };
 
 export default ReactDiagram;

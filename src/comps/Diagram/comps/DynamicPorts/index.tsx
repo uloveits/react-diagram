@@ -354,7 +354,7 @@ const DynamicPorts = (props: IDynamicPortsProps) => {
       'Auto',
       {
         // define the group's internal layout
-        layout: $(go.TreeLayout, { angle: 90, arrangement: go.TreeLayout.ArrangementHorizontal, isRealtime: false }),
+        // layout: $(go.TreeLayout, { angle: 90, arrangement: go.TreeLayout.ArrangementHorizontal, isRealtime: false }),
         // the group begins unexpanded;
         // upon expansion, a Diagram Listener will generate contents for the group
         isSubGraphExpanded: true,
@@ -371,7 +371,7 @@ const DynamicPorts = (props: IDynamicPortsProps) => {
           { defaultAlignment: go.Spot.Top },
           // the SubGraphExpanderButton is a panel that functions as a button to expand or collapse the subGraph
           $('SubGraphExpanderButton'),
-          $(go.TextBlock, { font: 'Bold 18px Sans-Serif', margin: 4, editable: true }, new go.Binding('text', 'key'))
+          $(go.TextBlock, { font: 'Bold 18px Sans-Serif', margin: 4, editable: true }, new go.Binding('text', 'name'))
         ),
         // create a placeholder to represent the area where the contents of the group are
         $(go.Placeholder, { padding: new go.Margin(0, 10) })

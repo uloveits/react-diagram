@@ -1,6 +1,6 @@
 import React from 'react';
 
 const MyHeader = () => {
-  return <>这里是头部组件</>;
+  return <div style={{ color: '#fff' }}>各类流程图的React封装</div>;
 };
 export default MyHeader;
