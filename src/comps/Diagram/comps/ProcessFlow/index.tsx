@@ -200,7 +200,7 @@ const ProcessFlow = (props: IProcessFlowProps) => {
           mouseLeave: (e, node) => {
             setIsMore(false);
             setMoreInfo({});
-            showSmallPorts(node, !isReadOnly);
+            showSmallPorts(node, isReadOnly);
           },
         }
       )
