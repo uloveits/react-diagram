@@ -1,1 +1,77 @@
-canvas { outline: none; }
+canvas {
+    outline: none;
+  }
+  .pop-more-info {
+    max-width: 300px;
+    padding: 10px;
+    background-color: #f6ffed;
+    border: 1px solid #b7eb8f;
+    border-radius: 3px;
+    word-break: break-all;
+    width: 300px;
+  
+    // border: 5px solid #09f;
+    // background-color: #fff;
+    position: relative;
+  
+    .info-row {
+      display: flex;
+      width: 100%;
+      .info-title {
+        line-height: 24px;
+      }
+      .info-content {
+        flex: 1;
+        width: 100%;
+        margin-left: 10px;
+        line-height: 24px;
+      }
+    }
+  
+    .arrow-top {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: -20px;
+      left: 18%;
+    }
+    .arrow-top * {
+      display: block;
+      border-width: 10px;
+      position: absolute;
+      border-style: solid dashed dashed dashed;
+      font-size: 0;
+      line-height: 0;
+    }
+    .arrow-top em {
+      border-color: transparent transparent #b7eb8f;
+    }
+    .arrow-top span {
+      border-color: transparent transparent #f6ffed;
+      top: 1px;
+    }
+  
+    .arrow-left {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 50px;
+      left: -20px;
+    }
+    .arrow-left * {
+      display: block;
+      border-width: 10px;
+      position: absolute;
+      border-style: solid dashed dashed dashed;
+      font-size: 0;
+      line-height: 0;
+    }
+    .arrow-left em {
+      border-color: transparent #b7eb8f transparent transparent;
+      left: -1px;
+    }
+    .arrow-left span {
+      border-color: transparent #f6ffed transparent transparent;
+    }
+  }
+  

@@ -1,9 +1,8 @@
 import React from 'react';
 import * as go from 'gojs';
-
-import './index.less';
 import { GuidedDraggingTool } from '../../utils/GuidedDraggingTool';
 import ReactDiagram from '../ReactDiagram';
+import './index.less';
 
 interface IProcessFlowProps {
   isReadOnly?: boolean;
@@ -15,7 +14,7 @@ interface IProcessFlowProps {
   divStyle?: React.CSSProperties;
   onModelChange?: (e: go.IncrementalData) => void;
   onModelClick?: (e: go.IncrementalData) => void;
-  toJson?: (json: string) => void;
+  toJson?: (text: string) => void;
 }
 
 export const ItemTypes = {
@@ -35,6 +34,9 @@ const ProcessFlow = (props: IProcessFlowProps) => {
     onModelClick,
     toJson,
   } = props;
+
+  const [isMore, setIsMore] = React.useState<boolean>(false);
+  const [moreInfo, setMoreInfo] = React.useState<any>({});
 
   const initDiagram = () => {
     const $ = go.GraphObject.make;
@@ -105,16 +107,16 @@ const ProcessFlow = (props: IProcessFlowProps) => {
 
     // To simplify this code we define a function for creating a context menu button:
     const makeButton = (text: string, action: (e: any, obj: any) => void, visiblePredicate?: any) => {
+      const _visible = new go.Binding('visible', '', (o, e) => {
+        return o.diagram ? visiblePredicate(o, e) : false;
+      }).ofObject();
+
       return $(
         'ContextMenuButton',
         $(go.TextBlock, text),
         { click: action },
         // don't bother with binding GraphObject.visible if there's no predicate
-        visiblePredicate
-          ? new go.Binding('visible', '', (o, e) => {
-              return o.diagram ? visiblePredicate(o, e) : false;
-            }).ofObject()
-          : {}
+        visiblePredicate ? _visible : {}
       );
     };
 
@@ -130,6 +132,9 @@ const ProcessFlow = (props: IProcessFlowProps) => {
           // fromLinkable: true,
           // toLinkable: true,
           resizeObjectName: 'SHAPE',
+          movable: !isReadOnly, // 禁止拖动
+          deletable: !isReadOnly, // 禁止删除
+          selectionAdorned: !isReadOnly, // 显示选中边框
         },
         new go.Binding('location', 'pos', go.Point.parse).makeTwoWay(go.Point.stringify),
         $(
@@ -168,10 +173,33 @@ const ProcessFlow = (props: IProcessFlowProps) => {
         makePort('B', go.Spot.Bottom, !isReadOnly, !isReadOnly),
         {
           // handle mouse enter/leave events to show/hide the ports
-          mouseEnter: (e, node) => {
+          mouseEnter: (e, node: any) => {
+            setIsMore(true);
+
+            console.log(node.data.pos.split(' '));
+            console.log(node.position);
+
+            const _data = node.data;
+            const position = node.data.pos.split(' ');
+            console.log(parseFloat(position[1]));
+            if (parseFloat(position[1]) <= 0) {
+              _data.top = position.length === 2 ? parseFloat(position[1]) + 90 : 0;
+              _data.left = position.length === 2 ? parseFloat(position[0]) + 50 : 0;
+              _data.popType = 'top';
+            } else {
+              _data.top = position.length === 2 ? parseFloat(position[1]) : 0;
+              _data.left = position.length === 2 ? parseFloat(position[0]) + 170 : 0;
+              _data.popType = 'left';
+            }
+
+            console.log(_data);
+
+            setMoreInfo(_data);
             showSmallPorts(node, !isReadOnly);
           },
           mouseLeave: (e, node) => {
+            setIsMore(false);
+            setMoreInfo({});
             showSmallPorts(node, !isReadOnly);
           },
         }
@@ -291,17 +319,51 @@ const ProcessFlow = (props: IProcessFlowProps) => {
   };
 
   return (
-    <ReactDiagram
-      divStyle={{ ...divStyle }}
-      initDiagram={initDiagram}
-      isAnimation={true}
-      nodeDataArray={nodeDataArray}
-      linkDataArray={linkDataArray}
-      modelData={modelData}
-      onModelChange={onModelChange}
-      onModelClick={onModelClick}
-      skipsDiagramUpdate={skipsDiagramUpdate}
-    />
+    <>
+      <ReactDiagram
+        divStyle={{ ...divStyle }}
+        initDiagram={initDiagram}
+        isAnimation={true}
+        nodeDataArray={nodeDataArray}
+        linkDataArray={linkDataArray}
+        modelData={modelData}
+        onModelChange={onModelChange}
+        onModelClick={onModelClick}
+        skipsDiagramUpdate={skipsDiagramUpdate}
+      />
+      {isMore && (
+        <>
+          <div style={{ position: 'absolute', top: `calc(50% + ${moreInfo.top}px)`, left: `calc(50% + ${moreInfo.left}px)`, zIndex: 1000 }}>
+            <div className="pop-more-info">
+              <div className={`arrow-${moreInfo.popType}`}>
+                <em />
+                <span />
+              </div>
+              <div className="info-row">
+                <div className="info-title">
+                  <span style={{ fontWeight: 'bold' }}>描述</span>
+                  <span>:</span>
+                </div>
+                <div className="info-content">
+                  <span style={{ marginRight: '20px' }}>{moreInfo.description || '暂无'}</span>
+                </div>
+              </div>
+              {(moreInfo.args || []).map((item: any) => (
+                <div className="info-row" key={item.id}>
+                  <div className="info-title">
+                    <span style={{ fontWeight: 'bold' }}>{item.name}</span>
+                    <span>:</span>
+                  </div>
+                  <div className="info-content">
+                    <span style={{ marginRight: '20px' }}>{item.defaultValue}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+    </>
   );
 };
 
