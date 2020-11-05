@@ -16,7 +16,7 @@ const Home = () => {
       category: 'Process',
       args: [
         {
-          id: '7862e730-af9f-47d3-bfc8-415460bb95c5',
+          id: '449416f4-bd34-4a56-b57a-a60c200d3eb6',
           name: 'brokeraddress',
           code: 'brokeraddress',
           type: '输入',
@@ -24,7 +24,7 @@ const Home = () => {
           enumValue: '172.16.4.221:6667,172.16.4.222:6667,172.16.4.223:6667,172.16.4.224:6667,172.16.4.225:6667,172.16.4.226:6667',
         },
         {
-          id: '18149129-b4b5-418d-b54d-afdfe9733369',
+          id: 'df2fe9c1-0a94-4035-8ffd-9397e4575b6b',
           name: 'topic',
           code: 'topic',
           type: '输入',
@@ -32,7 +32,7 @@ const Home = () => {
           enumValue: 'exception_data_c_json',
         },
       ],
-      pos: '220 180',
+      pos: '360 240',
     },
     {
       key: 'guidescript',
@@ -41,7 +41,7 @@ const Home = () => {
       category: 'Process',
       args: [
         {
-          id: '3c5e6312-60c5-4f50-8645-83cb2f75e8fa',
+          id: '1b4fd09c-f318-48f8-b9be-df0abd6772ea',
           name: 'executescript',
           code: 'executescript',
           type: '输入',
@@ -49,7 +49,7 @@ const Home = () => {
           enumValue: '__init__.py',
         },
         {
-          id: '6b087507-e2b6-49bc-82d7-18417d250627',
+          id: 'b8661039-74f2-4b04-94c2-1ba13b59b472',
           name: 'language',
           code: 'language',
           type: '输入',
@@ -57,7 +57,7 @@ const Home = () => {
           enumValue: 'python3',
         },
       ],
-      pos: '40 -300',
+      pos: '180 -240',
     },
     {
       key: 'cache',
@@ -66,7 +66,7 @@ const Home = () => {
       category: 'Process',
       args: [
         {
-          id: '0d575d1b-4a32-488c-bb69-df3f2272193f',
+          id: '77e7fa2d-9d77-4e64-97e3-eec14acf8e6c',
           name: 'keyspace',
           code: 'keyspace',
           type: '输入',
@@ -74,7 +74,7 @@ const Home = () => {
           enumValue: 'rzbigdata',
         },
         {
-          id: '646a03fc-9c8b-4b75-aa66-e3b490318e00',
+          id: '63a7a949-8864-4f41-b26d-f86a73b410b2',
           name: 'table',
           code: 'table',
           type: '输入',
@@ -82,7 +82,7 @@ const Home = () => {
           enumValue: 'dat_algorithm_cache',
         },
         {
-          id: '19f16b8f-f1dc-4b17-b4f4-697f92c40fcb',
+          id: 'f8ed737e-3abb-49c4-8927-fc42c5b9edc7',
           name: 'host',
           code: 'host',
           type: '输入',
@@ -90,7 +90,7 @@ const Home = () => {
           enumValue: '172.16.3.1,172.16.3.2,172.16.3.3,172.16.3.4',
         },
       ],
-      pos: '-140 -300',
+      pos: '0 -240',
     },
     {
       key: 'subscribe',
@@ -99,7 +99,7 @@ const Home = () => {
       category: 'Process',
       args: [
         {
-          id: 'dfa472a0-b712-453d-b342-cdcd23db1b95',
+          id: '79f71e09-5025-419d-a8fe-e45d763b0941',
           name: 'brokeraddress',
           code: 'brokeraddress',
           type: '输入',
@@ -107,7 +107,7 @@ const Home = () => {
           enumValue: '172.16.4.221:6667,172.16.4.222:6667,172.16.4.223:6667,172.16.4.224:6667,172.16.4.225:6667,172.16.4.226:6667',
         },
         {
-          id: '29b292d6-25c6-47bf-9f06-d99c15c0f420',
+          id: '358b3af3-2566-43a4-aab7-e3e06e5203ed',
           name: 'topic',
           code: 'topic',
           type: '输入',
@@ -115,7 +115,7 @@ const Home = () => {
           enumValue: 'graph_sh_indices_json',
         },
       ],
-      pos: '-500 -300',
+      pos: '-360 -240',
     },
     {
       key: 'errorsignal',
@@ -124,16 +124,16 @@ const Home = () => {
       category: 'Process',
       args: [
         {
-          id: 'a1fa2f28-4f7f-4767-b0b8-5eba3e010f41',
+          id: '7eaae40d-4b15-4cad-a1eb-ae109d789e63',
           name: 'brokeraddress',
           code: 'brokeraddress',
           type: '输入',
           defaultValue: '172.16.4.221:6667,172.16.4.222:6667,172.16.4.223:6667,172.16.4.224:6667,172.16.4.225:6667,172.16.4.226:6667',
           enumValue: '172.16.4.221:6667,172.16.4.222:6667,172.16.4.223:6667,172.16.4.224:6667,172.16.4.225:6667,172.16.4.226:6667',
         },
-        { id: 'a8515317-e381-4dc2-8e96-b63b4a3d41d9', name: 'topic', code: 'topic', type: '输入', defaultValue: 'ryohaerr', enumValue: 'ryohaerr' },
+        { id: '12a5c6d3-1ffa-48f3-bc85-a00f8e209a54', name: 'topic', code: 'topic', type: '输入', defaultValue: 'ryohaerr', enumValue: 'ryohaerr' },
       ],
-      pos: '220 20',
+      pos: '360 80',
     },
     {
       key: 'temporarygraph',
@@ -142,7 +142,7 @@ const Home = () => {
       category: 'Process',
       args: [
         {
-          id: '0f59df47-b26c-4dea-92da-d14d1484e798',
+          id: '346dc37d-4eea-4905-93a9-a9b74010f635',
           name: 'brokeraddress',
           code: 'brokeraddress',
           type: '输入',
@@ -150,7 +150,7 @@ const Home = () => {
           enumValue: '172.16.4.221:6667,172.16.4.222:6667,172.16.4.223:6667,172.16.4.224:6667,172.16.4.225:6667,172.16.4.226:6667',
         },
         {
-          id: 'd6501b62-85c4-4e93-a39e-82f5a67f59ac',
+          id: '80b926ce-8c71-4ee4-b0a6-74ab99cb4a08',
           name: 'topic',
           code: 'topic',
           type: '输入',
@@ -158,7 +158,7 @@ const Home = () => {
           enumValue: 'ryohagraph',
         },
       ],
-      pos: '220 -300',
+      pos: '360 -240',
     },
     {
       key: 'event',
@@ -167,16 +167,16 @@ const Home = () => {
       category: 'Process',
       args: [
         {
-          id: '587505ae-c166-4d84-8cc1-3b7984b7299b',
+          id: 'db4dee2f-98dd-4bf0-9933-f9a4a917bb6d',
           name: 'ip',
           code: 'ip',
           type: '输入',
           defaultValue: '172.16.4.221,172.16.4.222,172.16.4.223,172.16.4.224,172.16.4.225,172.16.4.226',
           enumValue: '172.16.4.221,172.16.4.222,172.16.4.223,172.16.4.224,172.16.4.225,172.16.4.226',
         },
-        { id: 'e0371868-5228-483a-b425-c84f52b5bb3d', name: 'port', code: 'port', type: '输入', defaultValue: '6667', enumValue: '6667' },
+        { id: '412138a9-1d0b-4276-a439-82baefc84dda', name: 'port', code: 'port', type: '输入', defaultValue: '6667', enumValue: '6667' },
         {
-          id: '43bb1785-c2dc-42b2-b0fc-08cc4792ec29',
+          id: '75f67eb8-37a5-4df0-8821-2e65fa22e467',
           name: 'topic',
           code: 'topic',
           type: '输入',
@@ -184,7 +184,7 @@ const Home = () => {
           enumValue: 'alarm_event_c_json',
         },
       ],
-      pos: '220 -140',
+      pos: '360 -80',
     },
     {
       key: 'savetokafka',
@@ -193,7 +193,7 @@ const Home = () => {
       category: 'Process',
       args: [
         {
-          id: '23776b7f-c99c-4d33-a38d-111ce1ae556a',
+          id: '483f2e0f-5e96-4a9a-9b3a-396715590b1a',
           name: 'brokeraddress',
           code: 'brokeraddress',
           type: '输入',
@@ -201,7 +201,7 @@ const Home = () => {
           enumValue: '172.16.4.221:6667,172.16.4.222:6667,172.16.4.223:6667,172.16.4.224:6667,172.16.4.225:6667,172.16.4.226:6667',
         },
         {
-          id: 'bc9d1e5e-0af5-4104-81ba-75e86a4d4d34',
+          id: '5388b5e3-5027-4506-b49a-75a36e8cceae',
           name: 'topic',
           code: 'topic',
           type: '输入',
@@ -209,7 +209,7 @@ const Home = () => {
           enumValue: 'ryohasource',
         },
       ],
-      pos: '220 -220',
+      pos: '360 -160',
     },
     {
       key: 'devicemodel',
@@ -218,7 +218,7 @@ const Home = () => {
       category: 'Process',
       args: [
         {
-          id: '7eda96f3-b5dc-49cb-a4d4-2dc04afe15e3',
+          id: '21c20e58-4bec-4fb5-abd0-6c3022cf167b',
           name: 'url',
           code: 'url',
           type: '输入',
@@ -226,7 +226,7 @@ const Home = () => {
           enumValue: 'http://172.16.0.131:5058/api/v1/devicemodel',
         },
       ],
-      pos: '-320 -300',
+      pos: '-180 -240',
     },
     {
       key: 'statistics',
@@ -235,7 +235,7 @@ const Home = () => {
       category: 'Process',
       args: [
         {
-          id: '214b2c98-7668-4edf-9a02-95a6cac861af',
+          id: 'd64a7677-d564-482e-9f4e-b4aa965ecf12',
           name: 'brokeraddress',
           code: 'brokeraddress',
           type: '输入',
@@ -243,7 +243,7 @@ const Home = () => {
           enumValue: '172.16.4.221:6667,172.16.4.222:6667,172.16.4.223:6667,172.16.4.224:6667,172.16.4.225:6667,172.16.4.226:6667',
         },
         {
-          id: '1ecbbea3-4896-4c21-81a6-41993596febc',
+          id: '18e4ecac-a098-4123-b56e-e3eccb2b5df8',
           name: 'topic',
           code: 'topic',
           type: '输入',
@@ -251,7 +251,7 @@ const Home = () => {
           enumValue: 'statistics_c_json',
         },
       ],
-      pos: '220 100',
+      pos: '360 160',
     },
     {
       key: 'cacheToCassandra',
@@ -260,7 +260,7 @@ const Home = () => {
       category: 'Process',
       args: [
         {
-          id: '6e3ddc34-04c7-4302-861c-fc1f433bc10f',
+          id: '296a6fa6-c4f5-4730-aad6-2b2e723c4657',
           name: 'keyspace',
           code: 'keyspace',
           type: '输入',
@@ -268,7 +268,7 @@ const Home = () => {
           enumValue: 'rzbigdata',
         },
         {
-          id: 'ba98af9a-768d-45aa-8434-e0ddf9712277',
+          id: '099e96bc-f9f8-490e-980b-73e4c30883f3',
           name: 'table',
           code: 'table',
           type: '输入',
@@ -276,7 +276,7 @@ const Home = () => {
           enumValue: 'dat_algorithm_cache_test',
         },
       ],
-      pos: '220 -60',
+      pos: '360 0',
     },
   ];
 

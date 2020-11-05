@@ -180,15 +180,15 @@ const ProcessFlow = (props: IProcessFlowProps) => {
             console.log(node.position);
 
             const _data = node.data;
-            const position = node.data.pos.split(' ');
-            console.log(parseFloat(position[1]));
-            if (parseFloat(position[1]) <= 0) {
-              _data.top = position.length === 2 ? parseFloat(position[1]) + 90 : 0;
-              _data.left = position.length === 2 ? parseFloat(position[0]) + 50 : 0;
+            const position = node.position;
+            console.log(position.x);
+            if (position.y <= 0) {
+              _data.top = position.y + 50;
+              _data.left = position.x;
               _data.popType = 'top';
             } else {
-              _data.top = position.length === 2 ? parseFloat(position[1]) : 0;
-              _data.left = position.length === 2 ? parseFloat(position[0]) + 170 : 0;
+              _data.top = position.y;
+              _data.left = position.x + 50;
               _data.popType = 'left';
             }
 
