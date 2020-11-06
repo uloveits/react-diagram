@@ -12,7 +12,7 @@ interface IBaseLayoutProps {
 const BaseLayout = (props: IBaseLayoutProps) => {
   const { children } = props;
   return (
-    <Layout className="layout">
+    <Layout className="my-layout">
       <Header>
         <MyHeader />
       </Header>
