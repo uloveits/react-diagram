@@ -1,23 +1,37 @@
 import React from 'react';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Router, Route, Switch, RouteComponentProps } from 'react-router-dom';
 import { createHashHistory } from 'history';
-import Home from '../pages/home';
-import SqlEdit from '../pages/sqlEdit';
+import { StaticContext } from 'react-router';
 import BaseLayout from '../comps/layout/Baselayout';
+
 
 const history = createHashHistory();
 
 const RouterConfig = () => {
+  /**
+   * 跳转路由前触发
+   * @param Component 
+   * @param props 
+   */
+  const onEnter = (Component: any, props: RouteComponentProps<any, StaticContext, unknown>) => {
+    console.log('跳转路由前触发');
+    console.log(Component);
+    console.log(props);
+    return <Component {...props} />;
+  };
+
   return (
-    <BaseLayout>
-      <Router history={history}>
-        <Switch>
-          <Route path="/" exact render={() => <Redirect to="/sqlEdit" />} />
-          <Route path="/home" component={Home} />
-          <Route path="/sqlEdit" component={SqlEdit} />
-        </Switch>
-      </Router>
-    </BaseLayout>
+    <Router history={history}>
+      <Route
+        render={() => {
+          return (
+            <Switch>
+              <Route path="/" render={(props) => onEnter(BaseLayout, props)} />
+            </Switch>
+          );
+        }}
+      />
+    </Router>
   );
 };
 export default RouterConfig;

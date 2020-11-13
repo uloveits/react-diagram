@@ -112,7 +112,6 @@ const SqlEdit = (props: ISqlEditProps) => {
     _editor.on('change', (__editor: any) => {
       onChange && onChange(__editor.getValue());
     });
-
     setEditor(_editor);
     // eslint-disable-next-line
   }, [textareaRef]);

@@ -2,7 +2,7 @@ import { Modal } from 'antd';
 import React from 'react';
 import ProcessFlow from '../../comps/Diagram/comps/ProcessFlow';
 
-const Home = () => {
+const ProcessFlowPage = () => {
   const onModelChange = (e: any) => {
     console.log('onModelChange');
     console.log(e);
@@ -302,8 +302,8 @@ const Home = () => {
   return (
     <>
       <ProcessFlow
-        isReadOnly={false}
-        isScroll={true}
+        isReadOnly={true}
+        isScroll={false}
         nodeDataArray={nodeDataArray}
         linkDataArray={linkDataArray}
         divStyle={{ width: '100%', height: '100%' }}
@@ -314,4 +314,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default ProcessFlowPage;
