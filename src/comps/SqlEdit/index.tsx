@@ -3,7 +3,10 @@ import CodeMirror from 'codemirror';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/neo.css';
 import 'codemirror/theme/panda-syntax.css';
+import 'codemirror/theme/neat.css';
+import 'codemirror/theme/idea.css';
 import 'codemirror/mode/sql/sql.js';
+import 'codemirror/mode/javascript/javascript.js';
 
 import 'codemirror/addon/hint/show-hint.js';
 import 'codemirror/addon/hint/show-hint.css';
@@ -11,12 +14,17 @@ import 'codemirror/addon/hint/show-hint.css';
 import './index.less';
 
 interface ISqlEditProps {
-  theme?: 'neo' | 'panda-syntax';
+  theme?: 'neat' | 'neo' | 'panda-syntax' | 'idea';
+  mode?: 'text/javascript' | 'text/x-mysql';
+  isSetValue?: boolean;
+  value?: string;
+  readOnly?: boolean;
+  onCallback?: () => void;
   onChange?: (txt: string) => void;
 }
 
 const SqlEdit = (props: ISqlEditProps) => {
-  const { theme = 'neo', onChange } = props;
+  const { theme = 'idea', mode = 'text/x-mysql', readOnly = false, value, isSetValue = false, onChange, onCallback } = props;
   const textareaRef = React.useRef<HTMLTextAreaElement | null>(null);
 
   const [editor, setEditor] = React.useState<any>(null);
@@ -62,12 +70,26 @@ const SqlEdit = (props: ISqlEditProps) => {
   ];
 
   React.useEffect(() => {
-    if (textareaRef.current === null) return;
+    console.log('======value========');
+    console.log(value);
     console.log(editor);
+    if (editor && isSetValue) {
+      editor.setValue(value);
+      onCallback && onCallback();
+      setTimeout(() => {
+        editor.refresh();
+      }, 100);
+    }
+    // eslint-disable-next-line
+  }, [value, isSetValue]);
+
+  React.useEffect(() => {
+    if (textareaRef.current === null) return;
     const _editor = CodeMirror.fromTextArea(textareaRef.current, {
       tabSize: 4,
-      mode: 'text/x-mysql',
+      mode,
       theme,
+      readOnly,
       lineNumbers: true,
       lineWrapping: true,
       hintOptions: {
@@ -76,20 +98,23 @@ const SqlEdit = (props: ISqlEditProps) => {
       },
       extraKeys: {
         'Ctrl-Space': (__editor: any) => {
-          __editor.showHint();
+          if (mode === 'text/x-mysql') {
+            __editor.showHint();
+          }
         },
       },
     });
     _editor.on('keypress', (__editor: any) => {
-      __editor.showHint();
-
-      // onChange(__editor);
+      if (mode === 'text/x-mysql') {
+        __editor.showHint();
+      }
     });
     _editor.on('change', (__editor: any) => {
       onChange && onChange(__editor.getValue());
     });
 
     setEditor(_editor);
+    // eslint-disable-next-line
   }, [textareaRef]);
 
   const hint = (__editor: any) => {
@@ -143,7 +168,7 @@ const SqlEdit = (props: ISqlEditProps) => {
 
   return (
     <>
-      <textarea ref={textareaRef} defaultValue="SELECT * FROM uloveits" className="my-txt" />
+      <textarea ref={textareaRef} defaultValue={value} className="my-txt" />
     </>
   );
 };

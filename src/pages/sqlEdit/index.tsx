@@ -1,12 +1,9 @@
 import { Button, message } from 'antd';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import SqlEdit from '../../comps/SqlEdit';
 
 const SqlEditPage = () => {
-  const history = useHistory();
-  console.log('hahah');
-  console.log(history);
+  const [isSetValue, setIsSetValue] = React.useState<boolean>(true);
 
   const onChange = (value: string) => {
     console.log('onChange===');
@@ -25,7 +22,15 @@ const SqlEditPage = () => {
       <div style={{ paddingBottom: '10px' }}>
         <Button onClick={onSelect}>获取当前选中</Button>
       </div>
-      <SqlEdit theme="panda-syntax" onChange={onChange} />
+      <SqlEdit
+        theme="panda-syntax"
+        isSetValue={isSetValue}
+        onCallback={() => {
+          setIsSetValue(false);
+        }}
+        value="SELECT * FROM uloveits"
+        onChange={onChange}
+      />
     </>
   );
 };
