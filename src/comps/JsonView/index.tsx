@@ -19,6 +19,7 @@ const JsonView = (props: IJsonViewProps) => {
     } catch (e) {
       setMyJson('This is not right JSON');
     }
+    // eslint-disable-next-line
   }, [json]);
 
   // JSON格式转化
