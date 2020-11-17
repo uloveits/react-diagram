@@ -4,9 +4,8 @@ import SubMenu from 'antd/lib/menu/SubMenu';
 import { SettingOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router';
 
-
 const MyHeader = () => {
-  const [current, setCurrent] = React.useState<string>('mail');
+  const [current, setCurrent] = React.useState<string>('jsonView');
 
   const history = useHistory();
 
@@ -19,6 +18,7 @@ const MyHeader = () => {
 
   return (
     <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
+      <Menu.Item key="jsonView">Json查看器</Menu.Item>
       <SubMenu key="diagram" icon={<SettingOutlined />} title="Diagram组件">
         <Menu.Item key="dynamicPorts">算子图</Menu.Item>
         <Menu.Item key="processFlow">工业流程图</Menu.Item>

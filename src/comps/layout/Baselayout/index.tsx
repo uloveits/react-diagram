@@ -7,6 +7,7 @@ import './index.less';
 import DynamicPortsPage from '../../../pages/dynamicPorts';
 import ProcessFlowPage from '../../../pages/processFlow';
 import SqlEditPage from '../../../pages/sqlEdit';
+import JsonViewPage from '../../../pages/jsonView';
 
 const { Header, Content, Footer } = Layout;
 
@@ -24,10 +25,11 @@ const BaseLayout = (props: IBaseLayoutProps) => {
       <Content style={{ padding: '10px' }}>
         <div className="site-layout-content">
           <Switch>
-            <Redirect exact from="/" to="/dynamicPorts" />
+            <Redirect exact from="/" to="/jsonView" />
             <Route path="/dynamicPorts" exact component={DynamicPortsPage} />
             <Route path="/processFlow" exact component={ProcessFlowPage} />
             <Route path="/sqlEdit" exact component={SqlEditPage} />
+            <Route path="/jsonView" exact component={JsonViewPage} />
           </Switch>
         </div>
       </Content>

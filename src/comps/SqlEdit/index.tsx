@@ -5,6 +5,7 @@ import 'codemirror/theme/neo.css';
 import 'codemirror/theme/panda-syntax.css';
 import 'codemirror/theme/neat.css';
 import 'codemirror/theme/idea.css';
+import 'codemirror/theme/rubyblue.css';
 import 'codemirror/mode/sql/sql.js';
 import 'codemirror/mode/javascript/javascript.js';
 
@@ -14,8 +15,8 @@ import 'codemirror/addon/hint/show-hint.css';
 import './index.less';
 
 interface ISqlEditProps {
-  theme?: 'neat' | 'neo' | 'panda-syntax' | 'idea';
-  mode?: 'text/javascript' | 'text/x-mysql';
+  theme?: 'neat' | 'neo' | 'panda-syntax' | 'idea' | 'rubyblue';
+  mode?: 'text/javascript' | 'text/x-mysql' | 'application/json';
   isSetValue?: boolean;
   value?: string;
   readOnly?: boolean;
@@ -96,12 +97,21 @@ const SqlEdit = (props: ISqlEditProps) => {
         completeSingle: false,
         hint,
       },
+      foldGutter: true,
+      gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+      lint: true,
       extraKeys: {
         'Ctrl-Space': (__editor: any) => {
           if (mode === 'text/x-mysql') {
             __editor.showHint();
           }
         },
+        F7: (__editor: any) => {
+          console.log('123');
+          const textJson = JSON.parse(__editor.getValue());
+          const result = JSON.stringify(textJson, undefined, 2);
+          __editor.setValue(result);
+        }, // 代码格式化
       },
     });
     _editor.on('keypress', (__editor: any) => {
