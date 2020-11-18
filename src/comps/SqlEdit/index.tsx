@@ -12,6 +12,12 @@ import 'codemirror/mode/javascript/javascript.js';
 import 'codemirror/addon/hint/show-hint.js';
 import 'codemirror/addon/hint/show-hint.css';
 
+import 'codemirror/addon/fold/foldgutter.css';
+import 'codemirror/addon/fold/foldcode';
+import 'codemirror/addon/fold/foldgutter';
+import 'codemirror/addon/fold/brace-fold';
+import 'codemirror/addon/fold/comment-fold';
+
 import './index.less';
 
 interface ISqlEditProps {
@@ -98,7 +104,7 @@ const SqlEdit = (props: ISqlEditProps) => {
         hint,
       },
       foldGutter: true,
-      gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+      gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter', 'CodeMirror-lint-markers'],
       lint: true,
       extraKeys: {
         'Ctrl-Space': (__editor: any) => {
