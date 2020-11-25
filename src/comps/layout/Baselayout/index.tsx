@@ -8,8 +8,9 @@ import DynamicPortsPage from '../../../pages/dynamicPorts';
 import ProcessFlowPage from '../../../pages/processFlow';
 import SqlEditPage from '../../../pages/sqlEdit';
 import JsonViewPage from '../../../pages/jsonView';
+import MySider from '../Sider';
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content, Footer, Sider } = Layout;
 
 interface IBaseLayoutProps {
   // children: React.ReactNode;
@@ -19,21 +20,33 @@ const BaseLayout = (props: IBaseLayoutProps) => {
 
   return (
     <Layout className="my-layout">
-      <Header>
-        <MyHeader />
-      </Header>
-      <Content style={{ padding: '10px' }}>
-        <div className="site-layout-content">
-          <Switch>
-            <Redirect exact from="/" to="/jsonView" />
-            <Route path="/dynamicPorts" exact component={DynamicPortsPage} />
-            <Route path="/processFlow" exact component={ProcessFlowPage} />
-            <Route path="/sqlEdit" exact component={SqlEditPage} />
-            <Route path="/jsonView" exact component={JsonViewPage} />
-          </Switch>
-        </div>
-      </Content>
-      <Footer style={{ textAlign: 'center' }}>Base-app ©2020 Created by uloveits</Footer>
+      <Sider
+        style={{
+          overflow: 'auto',
+          height: '100vh',
+          position: 'fixed',
+          left: 0,
+        }}
+      >
+        <MySider />
+      </Sider>
+      <Layout style={{ marginLeft: '90px' }}>
+        <Header>
+          <MyHeader />
+        </Header>
+        <Content style={{ padding: '10px' }}>
+          <div className="site-layout-content">
+            <Switch>
+              <Redirect exact from="/" to="/jsonView" />
+              <Route path="/dynamicPorts" exact component={DynamicPortsPage} />
+              <Route path="/processFlow" exact component={ProcessFlowPage} />
+              <Route path="/sqlEdit" exact component={SqlEditPage} />
+              <Route path="/jsonView" exact component={JsonViewPage} />
+            </Switch>
+          </div>
+        </Content>
+        <Footer style={{ textAlign: 'center' }}>Base-app ©2020 Created by uloveits</Footer>
+      </Layout>
     </Layout>
   );
 };
