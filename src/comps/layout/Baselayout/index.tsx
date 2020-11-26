@@ -26,22 +26,28 @@ const BaseLayout = (props: IBaseLayoutProps) => {
           height: '100vh',
           position: 'fixed',
           left: 0,
+          zIndex: 100,
         }}
       >
         <MySider />
       </Sider>
       <Layout style={{ marginLeft: '90px' }}>
-        <Header>
+        <Header
+          style={{
+            background: '#fff',
+            boxShadow: '0 0 18px 5px rgba(0, 0, 0, 0.1)',
+          }}
+        >
           <MyHeader />
         </Header>
         <Content style={{ padding: '10px' }}>
           <div className="site-layout-content">
             <Switch>
-              <Redirect exact from="/" to="/jsonView" />
-              <Route path="/dynamicPorts" exact component={DynamicPortsPage} />
-              <Route path="/processFlow" exact component={ProcessFlowPage} />
-              <Route path="/sqlEdit" exact component={SqlEditPage} />
-              <Route path="/jsonView" exact component={JsonViewPage} />
+              <Redirect exact from="/" to="/home" />
+              <Route path="/diagram/dynamicPorts" exact component={DynamicPortsPage} />
+              <Route path="/diagram/processFlow" exact component={ProcessFlowPage} />
+              <Route path="/code/sqlEdit" exact component={SqlEditPage} />
+              <Route path="/code/jsonView" exact component={JsonViewPage} />
             </Switch>
           </div>
         </Content>

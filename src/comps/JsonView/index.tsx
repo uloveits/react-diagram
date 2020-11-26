@@ -12,8 +12,6 @@ const JsonView = (props: IJsonViewProps) => {
   React.useEffect(() => {
     try {
       const textJson = JSON.parse(json);
-      console.log('JSON.stringify(textJson)');
-      console.log(JSON.stringify(textJson, undefined, 2));
       const result = syntaxHighlight(JSON.stringify(textJson, undefined, 2));
       setMyJson(result);
     } catch (e) {
@@ -29,9 +27,7 @@ const JsonView = (props: IJsonViewProps) => {
     }
     let index = 0;
     _json = _json.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
-    console.log('=======_json=======');
-    console.log(_json);
-
+ 
     return _json.replace(
       /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?|{|}|\[|\])/g,
       (match) => {
