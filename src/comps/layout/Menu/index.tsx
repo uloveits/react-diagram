@@ -52,7 +52,7 @@ const MyMenu = () => {
     console.log('鼠标移入事件');
     console.log(item);
     console.log(currentPath);
-    if (item.path === currentPath.split('/')[0]) {
+    if (item.path === currentPath.split('/')[0] && item.children && item.children.length > 0) {
       setCurrent({ ...item });
       setIsSecondMeun(true);
       return;
