@@ -26,7 +26,10 @@ const JsonViewPage = () => {
             }}
           />
         </div>
-        <div style={{ width: '70%', height: '100%', borderLeft: '1px solid #000' }}>
+        <div style={{ width: '1%', display: 'flex', justifyContent: 'center' }}>
+          <div style={{ height: '100%', width: '1px', background: '#000' }} />
+        </div>
+        <div style={{ width: '69%', height: '100%', padding: '10px' }}>
           <JsonView json={json} />
         </div>
       </div>
