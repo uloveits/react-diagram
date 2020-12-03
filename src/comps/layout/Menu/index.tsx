@@ -1,3 +1,4 @@
+import MENUS from '@/router/menus.config';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -7,28 +8,6 @@ const MyMenu = () => {
   const [currentPath, setCurrentPath] = React.useState<string>('home');
   const [current, setCurrent] = React.useState<any>({});
   const [isSecondMeun, setIsSecondMeun] = React.useState<boolean>(false);
-
-  const menu = [
-    { name: '首页', path: 'home', icon: 'home' },
-    {
-      name: '编辑器',
-      path: 'code',
-      icon: 'code',
-      children: [
-        { name: 'JSON', path: 'code/jsonView' },
-        { name: 'SQL', path: 'code/sqlEdit' },
-      ],
-    },
-    {
-      name: '流程图',
-      path: 'diagram',
-      icon: 'diagram',
-      children: [
-        { name: '算子图', path: 'diagram/dynamicPorts' },
-        { name: '工业流程图', path: 'diagram/processFlow' },
-      ],
-    },
-  ];
 
   const history = useHistory();
 
@@ -49,9 +28,6 @@ const MyMenu = () => {
 
   // 鼠标移入事件
   const onMouseOver = (item: any) => {
-    console.log('鼠标移入事件');
-    console.log(item);
-    console.log(currentPath);
     if (item.path === currentPath.split('/')[0] && item.children && item.children.length > 0) {
       setCurrent({ ...item });
       setIsSecondMeun(true);
@@ -70,7 +46,7 @@ const MyMenu = () => {
 
   return (
     <div className="my-menu">
-      {menu.map((item: any) => (
+      {MENUS.map((item: any) => (
         <div
           className={`base-menu 
             ${currentPath.split('/')[0] === item.path ? 'select' : ''}
@@ -90,14 +66,14 @@ const MyMenu = () => {
             }}
           >
             <span className={`fa fa-${item.icon}`} style={{ fontSize: '24px' }} />
-            <div className="base-menu-text">{item.name}</div>
+            <div className="base-menu-text">{item.title}</div>
           </div>
         </div>
       ))}
 
       {isSecondMeun && (
         <div className="second-menu-board" onFocus={() => 0} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
-          <div className="title">{current.name}</div>
+          <div className="title">{current.title}</div>
           <div className="content">
             <div className="content-border" style={{ height: `${current?.children.length * 30}px` }} />
             <div style={{ paddingLeft: '20px' }}>
@@ -111,7 +87,7 @@ const MyMenu = () => {
                   }}
                 >
                   {currentPath === child.path && <div className="menu-item-select-border" />}
-                  {child.name}
+                  {child.title}
                 </div>
               ))}
             </div>

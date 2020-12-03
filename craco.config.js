@@ -18,18 +18,21 @@ module.exports = {
       // 此处是一个示例，实际可根据各自需求配置
     },
     plugins: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          compress: {
-            warnings: false,
-            drop_debugger: true,
-            drop_console: true,
-          },
-        },
-        exclude:
-        sourceMap: false,
-        parallel: true,
-      }),
+      ...whenProd(
+        () => [
+          new UglifyJsPlugin({
+            uglifyOptions: {
+              compress: {
+                warnings: false,
+                drop_debugger: true,
+                drop_console: true,
+              },
+            },
+            sourceMap: false,
+            parallel: true,
+          }),
+        ], []
+      ),
       // 查看打包的进度
       // new SimpleProgressWebpackPlugin(),
       // webpack构建进度条

@@ -1,36 +1,66 @@
 import React from 'react';
-import { Router, Route, Switch, RouteComponentProps } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import { createHashHistory } from 'history';
-import { StaticContext } from 'react-router';
+import { Redirect } from 'react-router';
+import memoize from 'memoize-one';
 import BaseLayout from '../comps/layout/Baselayout';
-
+import MENUS from './menus.config';
 
 const history = createHashHistory();
 
+export interface IRouterConfig {
+  /** 标题 */
+  title: string;
+  /** 隐藏模块 */
+  hidden?: boolean;
+  /** 路径 */
+  path: string;
+  /** 图标 */
+  icon?: string;
+  /** 模块代码路径 */
+  comp?: string;
+  /** 子路由 */
+  children?: IRouterConfig[];
+}
+
 const RouterConfig = () => {
-  /**
-   * 跳转路由前触发
-   * @param Component 
-   * @param props 
-   */
-  const onEnter = (Component: any, props: RouteComponentProps<any, StaticContext, unknown>) => {
-    console.log('跳转路由前触发');
-    console.log(Component);
-    console.log(props);
-    return <Component {...props} />;
+  // 异步加载组件文件
+  const importComps = (comp: string | undefined) => {
+    return React.lazy(() => import(`@/pages/${comp}`));
   };
+
+  const getRoute = (r: IRouterConfig) => {
+    const Item: any = importComps(r.comp);
+    const routeProps = {
+      key: r.path,
+      path: `/${r.path}`,
+      exact: true,
+      title: r.title,
+      component: (props: any) => {
+        return <Item {...props} />;
+      },
+    };
+    return <Route {...routeProps} />;
+  };
+
+  // 创建路由
+  const createRoute = memoize(() => {
+    const res: React.ReactElement[] = [];
+    MENUS.forEach((r: any) => {
+      const _Route = r.children.length === 0 ? getRoute(r) : r.children.map((_r: IRouterConfig) => getRoute(_r));
+      res.push(_Route);
+    });
+
+    res.push(<Redirect exact from="/" to="/home" />);
+
+    console.log('createRoute');
+    console.log(res);
+    return <Switch>{res}</Switch>;
+  });
 
   return (
     <Router history={history}>
-      <Route
-        render={() => {
-          return (
-            <Switch>
-              <Route path="/" render={(props) => onEnter(BaseLayout, props)} />
-            </Switch>
-          );
-        }}
-      />
+      <BaseLayout>{createRoute()}</BaseLayout>
     </Router>
   );
 };

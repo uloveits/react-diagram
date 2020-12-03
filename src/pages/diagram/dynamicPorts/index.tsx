@@ -1,5 +1,5 @@
 import React from 'react';
-import DynamicPorts from '../../comps/Diagram/comps/DynamicPorts';
+import DynamicPorts from '@/comps/Diagram/comps/DynamicPorts';
 
 const DynamicPortsPage = () => {
 

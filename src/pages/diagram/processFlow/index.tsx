@@ -1,6 +1,6 @@
-import { Modal } from 'antd';
 import React from 'react';
-import ProcessFlow from '../../comps/Diagram/comps/ProcessFlow';
+import ProcessFlow from '@/comps/Diagram/comps/ProcessFlow';
+import { Modal } from 'antd';
 
 const ProcessFlowPage = () => {
   const onModelChange = (e: any) => {

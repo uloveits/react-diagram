@@ -1,6 +1,5 @@
 
 import React from 'react';
-
 import JsonView from '@/comps/JsonView';
 import SqlEdit from '@/comps/SqlEdit';
 

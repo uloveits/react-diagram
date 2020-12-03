@@ -1,22 +1,17 @@
 import React from 'react';
-import { Layout } from 'antd';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Layout, Spin } from 'antd';
 import MyHeader from '../Header';
 import './index.less';
 
-import DynamicPortsPage from '../../../pages/dynamicPorts';
-import ProcessFlowPage from '../../../pages/processFlow';
-import SqlEditPage from '../../../pages/sqlEdit';
-import JsonViewPage from '../../../pages/jsonView';
 import MySider from '../Sider';
 
 const { Header, Content, Footer, Sider } = Layout;
 
 interface IBaseLayoutProps {
-  // children: React.ReactNode;
+  children: React.ReactNode;
 }
 const BaseLayout = (props: IBaseLayoutProps) => {
-  // const { children } = props;
+  const { children } = props;
 
   return (
     <Layout className="my-layout">
@@ -42,13 +37,7 @@ const BaseLayout = (props: IBaseLayoutProps) => {
         </Header>
         <Content style={{ padding: '10px' }}>
           <div className="site-layout-content">
-            <Switch>
-              <Redirect exact from="/" to="/home" />
-              <Route path="/diagram/dynamicPorts" exact component={DynamicPortsPage} />
-              <Route path="/diagram/processFlow" exact component={ProcessFlowPage} />
-              <Route path="/code/sqlEdit" exact component={SqlEditPage} />
-              <Route path="/code/jsonView" exact component={JsonViewPage} />
-            </Switch>
+            <React.Suspense fallback={<Spin delay={200} className="global-spin" />}>{children}</React.Suspense>
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>Base-app ©2020 Created by uloveits</Footer>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, message } from 'antd';
-import SqlEdit from '../../comps/SqlEdit';
+import SqlEdit from '@/comps/SqlEdit';
+
 
 const SqlEditPage = () => {
   const [isSetValue, setIsSetValue] = React.useState<boolean>(true);
