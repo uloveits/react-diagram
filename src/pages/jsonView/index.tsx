@@ -1,6 +1,10 @@
+
 import React from 'react';
-import JsonView from '../../comps/JsonView';
-import SqlEdit from '../../comps/SqlEdit';
+
+import JsonView from '@/comps/JsonView';
+import SqlEdit from '@/comps/SqlEdit';
+
+
 
 const JsonViewPage = () => {
   const [isSetValue, setIsSetValue] = React.useState<boolean>(true);
