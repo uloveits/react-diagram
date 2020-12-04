@@ -16,7 +16,7 @@ const MENUS = [
     icon: 'diagram',
     children: [
       { title: '算子图', hidden: false, path: 'diagram/dynamicPorts', comp: 'diagram/dynamicPorts', children: [] },
-      { title: '工业流程图', hidden: false, path: 'diagram/processFlow', comp: 'diagram/dynamicPorts', children: [] },
+      { title: '工业流程图', hidden: false, path: 'diagram/processFlow', comp: 'diagram/processFlow', children: [] },
     ],
   },
 ];

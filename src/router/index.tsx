@@ -3,7 +3,9 @@ import { Router, Route, Switch } from 'react-router-dom';
 import { createHashHistory } from 'history';
 import { Redirect } from 'react-router';
 import memoize from 'memoize-one';
-import BaseLayout from '../comps/layout/Baselayout';
+import BaseLayout from '@/comps/layout/Baselayout';
+// import { useRouterStore } from '@/stores';
+
 import MENUS from './menus.config';
 
 const history = createHashHistory();
@@ -52,15 +54,28 @@ const RouterConfig = () => {
     });
 
     res.push(<Redirect exact from="/" to="/home" />);
-
     console.log('createRoute');
     console.log(res);
     return <Switch>{res}</Switch>;
   });
 
+  const onEnter = (_props: any) => {
+    console.log('123');
+    console.log(_props);
+    return <BaseLayout pathname={_props.location.pathname}>{createRoute()}</BaseLayout>;
+  };
+
   return (
     <Router history={history}>
-      <BaseLayout>{createRoute()}</BaseLayout>
+      <Route
+        render={(props) => {
+          return (
+            <Switch>
+              <Route path="/" render={(_props) => onEnter(_props)} />
+            </Switch>
+          );
+        }}
+      />
     </Router>
   );
 };

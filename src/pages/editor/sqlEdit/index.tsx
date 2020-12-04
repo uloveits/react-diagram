@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, message } from 'antd';
 import SqlEdit from '@/comps/SqlEdit';
 
-
 const SqlEditPage = () => {
   const [isSetValue, setIsSetValue] = React.useState<boolean>(true);
 
@@ -23,7 +22,7 @@ const SqlEditPage = () => {
       <div style={{ paddingBottom: '10px' }}>
         <Button onClick={onSelect}>获取当前选中</Button>
       </div>
-      <div style={{ height: '100%' }}>
+      <div style={{ height: 'calc(100% - 42px)' }}>
         <SqlEdit
           theme="panda-syntax"
           isSetValue={isSetValue}

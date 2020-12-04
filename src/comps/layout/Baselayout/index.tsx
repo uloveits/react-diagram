@@ -1,17 +1,19 @@
 import React from 'react';
 import { Layout, Spin } from 'antd';
-import MyHeader from '../Header';
-import './index.less';
 
+import './index.less';
 import MySider from '../Sider';
+import MyHeader from '../Header';
+import MyBreadcrumb from '../Breadcrumb';
 
 const { Header, Content, Footer, Sider } = Layout;
 
 interface IBaseLayoutProps {
+  pathname: string;
   children: React.ReactNode;
 }
 const BaseLayout = (props: IBaseLayoutProps) => {
-  const { children } = props;
+  const { children, pathname } = props;
 
   return (
     <Layout className="my-layout">
@@ -26,16 +28,19 @@ const BaseLayout = (props: IBaseLayoutProps) => {
       >
         <MySider />
       </Sider>
-      <Layout style={{ marginLeft: '90px' }}>
+      <Layout className="system-bg" style={{ marginLeft: '90px' }}>
         <Header
           style={{
-            background: '#fff',
+            background: 'transparent',
             boxShadow: '0 0 18px 5px rgba(0, 0, 0, 0.1)',
           }}
         >
           <MyHeader />
         </Header>
         <Content style={{ padding: '10px' }}>
+          <div style={{ paddingLeft: '10px' }}>
+            <MyBreadcrumb pathname={pathname} />
+          </div>
           <div className="site-layout-content">
             <React.Suspense fallback={<Spin delay={200} className="global-spin" />}>{children}</React.Suspense>
           </div>

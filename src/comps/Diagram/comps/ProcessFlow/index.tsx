@@ -51,7 +51,7 @@ const ProcessFlow = (props: IProcessFlowProps) => {
         $(go.Shape, 'LineV', { stroke: 'lightgray', strokeWidth: 0.5 })
       ),
       'grid.visible': true,
-      'grid.gridCellSize': new go.Size(30, 30),
+      'grid.gridCellSize': new go.Size(10, 10),
 
       allowZoom: isScroll,
       allowHorizontalScroll: isScroll,

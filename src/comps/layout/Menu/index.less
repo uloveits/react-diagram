@@ -1,46 +1,56 @@
 .my-menu {
-  padding: 10px;
   position: relative;
-
-  .base-menu {
-    margin-bottom: 10px;
-    width: 100%;
-    height: 60px;
-    color: #cbedff;
-    display: flex;
-    align-items: center;
-    border-radius: 4px;
-    line-height: normal;
-    .base-menu-icon {
-      text-align: center;
+  .my-menu-first {
+    position: fixed;
+    z-index: 100;
+    top: 65px;
+    left: 0;
+    bottom: 0;
+    width: 90px;
+    height: 100%;
+    background: #003359;
+    padding: 10px;
+    .base-menu {
+      margin-bottom: 10px;
       width: 100%;
-    }
-    .base-menu-text {
-      white-space: nowrap;
-      font-size: 12px;
-      text-align: center;
+      height: 60px;
+      color: #cbedff;
+      display: flex;
+      align-items: center;
+      border-radius: 4px;
+      line-height: normal;
+      .base-menu-icon {
+        text-align: center;
+        width: 100%;
+      }
+      .base-menu-text {
+        white-space: nowrap;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      &:hover {
+        cursor: pointer;
+        color: #fff;
+      }
     }
 
-    &:hover {
-      cursor: pointer;
+    .active {
+      background: #00599c;
+      color: #fff;
+    }
+
+    .select {
+      background: #007fdf;
       color: #fff;
     }
   }
 
-  .active {
-    background: #00599c;
-    color: #fff;
-  }
-
-  .select {
-    background: #007fdf;
-    color: #fff;
-  }
   .second-menu-board {
     position: fixed;
     padding: 20px;
-    z-index: 1000;
-    left: 90px;
+    z-index: 99;
+    left: -90px;
     top: 65px;
     height: 100%;
     width: 180px;
